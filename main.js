@@ -32,27 +32,67 @@ const printBoard = () => {
   console.log('2 ' + board[2].join(' | '));
 }
 
+
+
 const horizontalWin = () => {
-  // Your code here to check for horizontal wins
+  for (let i = 0; i < 3; i++){
+    if (board[i][0] === board[i][1] && board[i][0] === board[i][2] ){
+      // console.log('you win');
+      return true;
+    } 
+  }
+
 }
 
 const verticalWin = () => {
-  // Your code here to check for vertical wins
+  for (let i = 0; i < 3; i++){
+    if (board[0][i] === board[1][i] && board[0][i]=== board[2][i]){
+      return true;
+    } 
+  }
 }
 
 const diagonalWin = () => {
-  // Your code here to check for diagonal wins
+  if (board[0][0]=== board[1][1] && board[0][0] === board[2][2]){
+    return true;
+  }
+  if (board[0][2] === board[1][1] && board[0][2] === board[2][0]){
+    return true;
+  }
 }
 
 const checkForWin = () => {
-  // Your code here call each of the check for types of wins
+  if(horizontalWin()|| verticalWin()|| diagonalWin()){
+    console.log('PLAYER' + ' ' + playerTurn + ' ' +  'HAS WON!!!')
+    return true;
+  } else {
+    return false;
+  }
 }
-
+//function that places marker on board and checks for win
 const ticTacToe = (row, column) => {
-  // Your code here to place a marker on the board
-  // then check for a win
-}
+  board[row][column] = playerTurn;
+  checkForWin();
+  changeMarker();
 
+}
+//func that changes the marker
+const changeMarker = () => {
+  if(playerTurn === "X"){
+    playerTurn = "O"
+  } else {
+    playerTurn = "X"
+  }
+}
+//function that resets the board
+const resetBoard = () => {
+  board = [
+    ["", "", ""],
+    ["", "", ""],
+    ["", "", ""]
+  ]
+}
+//gets player input and sends into game
 const getPrompt = () => {
   printBoard();
   console.log("It's Player " + playerTurn + "'s turn.");
@@ -64,7 +104,8 @@ const getPrompt = () => {
   });
 }
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Unit Tests
 // You use them run the command: npm test main.js
 // to close them ctrl + C
