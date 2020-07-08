@@ -35,34 +35,46 @@ const printBoard = () => {
 
 
 const horizontalWin = () => {
-  for (let i = 0; i < 3; i++){
-    if (board[i][0] === board[i][1] && board[i][0] === board[i][2] ){
-      // console.log('you win');
-      return true;
-    } 
+  for (let i = 0; i < 3; i++) {
+    if (board[i][0]==board[i][1]&& board[i][0]==board[i][2]){
+    if (board[i][0] == 'X' || board[i][0] == 'O'){
+        return true;
+      }
+    }  
   }
-
+  return false;
 }
 
 const verticalWin = () => {
   for (let i = 0; i < 3; i++){
-    if (board[0][i] === board[1][i] && board[0][i]=== board[2][i]){
-      return true;
-    } 
-  }
+    if (board[0][i] == board[1][i]&& board[0][i] == board[2][i]){
+      if(board[0][i] == 'X' || board[0][i] == 'O'){
+          return true;
+        }
+      }
+    }
+    return false;
 }
 
+
 const diagonalWin = () => {
-  if (board[0][0]=== board[1][1] && board[0][0] === board[2][2]){
+  if (board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
+    if(board[0][0] =='X' || board[0][0] =='O') {
     return true;
-  }
-  if (board[0][2] === board[1][1] && board[0][2] === board[2][0]){
+    }
+  };
+  
+  if (board[0][2] === board[1][1] && board[2][0]) {
+    if(board[0][2] =='X' || board[0][2] =='O') {
     return true;
+    }
+  } else {
+    return false;
   }
 }
 
 const checkForWin = () => {
-  if(horizontalWin()|| verticalWin()|| diagonalWin()){
+  if(horizontalWin() || verticalWin()|| diagonalWin()){
     console.log('PLAYER' + ' ' + playerTurn + ' ' +  'HAS WON!!!')
     return true;
   } else {
@@ -73,6 +85,7 @@ const checkForWin = () => {
 const ticTacToe = (row, column) => {
   board[row][column] = playerTurn;
   checkForWin();
+  console.log(checkForWin())
   changeMarker();
 
 }
