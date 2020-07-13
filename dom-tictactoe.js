@@ -13,8 +13,10 @@ const handleClick = (element) => {
   if(!document.getElementById(element.id).innerHTML){
     addMarker(element.id)
     updateBoard(element.id)
-
-    checkForWin()
+    setTimeout(() => {
+      checkForWin();
+    }, 500);
+    // checkForWin()
   }
 }
 
